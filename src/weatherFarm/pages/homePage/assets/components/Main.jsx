@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useState } from 'react';
 
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 const Main = ( {children, temp} ) =>{
 
@@ -15,67 +15,35 @@ const Main = ( {children, temp} ) =>{
     const [minutes, setMinutes] = useState(initMinutes)
 
     return(
-        <View style={{
-            width: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-        }}>
-                    <Text style={{
-                        fontSize: 30,
-                        color: 'white',
-                        fontWeight: 500,
-                    }}>{children}</Text>
+        <View style={styles.container}>
+                    <Text style={styles.cityName}>{children}</Text>
 
-                    <View style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                    }}>
-                        <Text style={{
-                            fontSize: 60,
-                            color: 'white',
-                        }}>--------------</Text>
+                    <View style={styles.view}>
+                        <Text style={styles.dash}>--------------</Text>
 
 
-                        <View style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            gap: 20,
-                        }}>
+                        <View style={styles.tempData}>
 
-                            <Text style={{
-                                fontSize: 90,
-                                color: 'white',
-                                fontWeight: 800,
-                            }}>{temp}</Text>
+                            <Text style={styles.temperature}>{temp}</Text>
 
 
-                            <View style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                            }}>
-                                <Text style={{
-                                    fontSize: 35,
-                                    color: 'white',
-                                    fontWeight: 800,
-                                }}>{dayWeek[new Date().getDay()]}</Text>
-                                <Text style={{
-                                    fontSize: 25,
-                                    color: 'white',
-                                    fontWeight: 800,
-                                }}>{hours !== initHours ? setHours(new Date().getHours()) : hours}h
-                                   {minutes !== initMinutes ? setMinutes(new Date().getMinutes()) : minutes}m</Text>
+                            <View style={styles.view}>
+                                <Text style={styles.dayWeek}>
+                                    {dayWeek[new Date().getDay()]}
+                                </Text>
+
+                                <Text style={styles.hoursMinutes}>
+                                    {hours !== initHours ? 
+                                        setHours(new Date().getHours()) : hours}h
+                                    {minutes !== initMinutes ? 
+                                        setMinutes(new Date().getMinutes()) : minutes}m
+                                </Text>
                             </View>
 
 
                         </View>
 
-                    <Text style={{
-                            fontSize: 60,
-                            color: 'white',
-                        }}>--------------</Text>
+                    <Text style={styles.dash} >--------------</Text>
 
                     </View>
 
@@ -84,5 +52,52 @@ const Main = ( {children, temp} ) =>{
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container : {
+        width: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    cityName : {
+        fontSize: 30,
+        color: 'white',
+        fontWeight: 500,
+    },
+    view : {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    dash : {
+        fontSize: 60,
+        color: 'white',
+    },
+    tempData : {
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 20,
+    },
+    dayWeek : {
+        fontSize: 35,
+        color: 'white',
+        fontWeight: 800,
+    },
+    hoursMinutes :{
+        fontSize: 25,
+        color: 'white',
+        fontWeight: 800,
+    },
+    temperature : {
+        fontSize: 90,
+        color: 'white',
+        fontWeight: 800,
+    }
+
+
+
+
+})
 
 export default Main;
