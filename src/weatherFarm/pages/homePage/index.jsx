@@ -2,28 +2,17 @@ import React from 'react';
 
 import { useState } from 'react';
 
-import { Image, Text, TextInput, ImageBackground, View, Button } from "react-native"
+import { Image, Text, TextInput, ImageBackground, View, Button } from "react-native";
+
+import Main from './assets/components/Main';
 
 
 export default function HomePage(){
 
-    const minutes = new Date().getMinutes();
-
-    const day = new Date().getDay();
-
-    const dayWeek = [ 'Dom', 'Seg', 'Ter', 'Quar', 'Qui', 'Sex', 'Sab'];
-
-
-   const [city, setCity] = useState('São Paulo');
-   const [data, setData] = useState({
-    temp: ''
-   });
-
-   const [hours, setHours] = useState(new Date().getHours());
-
-   
-
-
+    const [city, setCity] = useState('São Paulo');
+    const [data, setData] = useState({
+     temp: ''
+    });
 
    const getData = async () => {
     try {
@@ -88,83 +77,10 @@ export default function HomePage(){
                                     marginRight: 10,
                                 }}
                             />
-                <View style={{
-                    width: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }}>
-                            <Text style={{
-                                fontSize: 30,
-                                color: 'white',
-                                fontWeight: 500,
-                            }}>{city}</Text>
-
-                            <View style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                            }}>
-                                <Text style={{
-                                    fontSize: 60,
-                                    color: 'white',
-                                }}>--------------</Text>
-
-
-                                <View style={{
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    gap: 20,
-                                }}>
-
-                                    <Text style={{
-                                        fontSize: 90,
-                                        color: 'white',
-                                        fontWeight: 800,
-                                    }}>{data.temperature}</Text>
-
-
-                                    <View style={{
-                                        display: 'flex',
-                                        alignItems: 'center',
-                                        justifyContent: 'center',
-                                    }}>
-                                        <Text style={{
-                                            fontSize: 35,
-                                            color: 'white',
-                                            fontWeight: 800,
-                                        }}>{dayWeek[day]}</Text>
-                                        <Text style={{
-                                            fontSize: 25,
-                                            color: 'white',
-                                            fontWeight: 800,
-                                        }}>{hours}h{minutes}m</Text>
-                                    </View>
-
-
-                                </View>
-
-
-
-
-
-
-
-
-
-
-
-
-                            <Text style={{
-                                    fontSize: 60,
-                                    color: 'white',
-                                }}>--------------</Text>
-
-                            </View>
-
-
-
-                </View>
+               
+               <Main
+                temp={data.temperature}
+                            >{city}</Main>
 
 
 
